@@ -21,6 +21,7 @@
 
         <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="updateButton" Content="Назад" Click="back_Click" Margin="0,0,0,-0.333"  />
+            <Button x:Name="import" Content="Импорт PDF" Click="import_Click" Margin="0,0,0,-0.333"  />
         </StackPanel>
     </Grid>
 </Window>
