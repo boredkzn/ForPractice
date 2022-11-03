@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BaseForPracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountSeats" Type="int" Nullable="false" />
+          <Property Name="Opened_Closed" Type="bit" Nullable="false" />
+          <Property Name="DateOpen" Type="datetime" Nullable="false" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopulationObject">
+          <Key>
+            <PropertyRef Name="PopulationObjectId" />
+          </Key>
+          <Property Name="PopulationObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="CountVisited" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Event__ObjectId__2B3F6F97">
+          <End Role="Object" Type="Self.Object" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Object__OwnerId__25869641">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Populatio__Objec__286302EC">
+          <End Role="Object" Type="Self.Object" Multiplicity="1" />
+          <End Role="PopulationObject" Type="Self.PopulationObject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="PopulationObject">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BaseForPracticeModelContainer">
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Object" EntityType="Self.Object" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PopulationObject" EntityType="Self.PopulationObject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Event__ObjectId__2B3F6F97" Association="Self.FK__Event__ObjectId__2B3F6F97">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Object__OwnerId__25869641" Association="Self.FK__Object__OwnerId__25869641">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Populatio__Objec__286302EC" Association="Self.FK__Populatio__Objec__286302EC">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="PopulationObject" EntitySet="PopulationObject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseForPracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Object" Relationship="Self.FK__Event__ObjectId__2B3F6F97" FromRole="Event" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountSeats" Type="Int32" Nullable="false" />
+          <Property Name="Opened_Closed" Type="Boolean" Nullable="false" />
+          <Property Name="DateOpen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK__Event__ObjectId__2B3F6F97" FromRole="Object" ToRole="Event" />
+          <NavigationProperty Name="Owner" Relationship="Self.FK__Object__OwnerId__25869641" FromRole="Object" ToRole="Owner" />
+          <NavigationProperty Name="PopulationObject" Relationship="Self.FK__Populatio__Objec__286302EC" FromRole="Object" ToRole="PopulationObject" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Object" Relationship="Self.FK__Object__OwnerId__25869641" FromRole="Owner" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="PopulationObject">
+          <Key>
+            <PropertyRef Name="PopulationObjectId" />
+          </Key>
+          <Property Name="PopulationObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="CountVisited" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Object" Relationship="Self.FK__Populatio__Objec__286302EC" FromRole="PopulationObject" ToRole="Object" />
+        </EntityType>
+        <Association Name="FK__Event__ObjectId__2B3F6F97">
+          <End Role="Object" Type="Self.Object" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Object__OwnerId__25869641">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Populatio__Objec__286302EC">
+          <End Role="Object" Type="Self.Object" Multiplicity="1" />
+          <End Role="PopulationObject" Type="Self.PopulationObject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="PopulationObject">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseForPracticeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Object" EntityType="Self.Object" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" />
+          <EntitySet Name="PopulationObject" EntityType="Self.PopulationObject" />
+          <AssociationSet Name="FK__Event__ObjectId__2B3F6F97" Association="Self.FK__Event__ObjectId__2B3F6F97">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Object__OwnerId__25869641" Association="Self.FK__Object__OwnerId__25869641">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Populatio__Objec__286302EC" Association="Self.FK__Populatio__Objec__286302EC">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="PopulationObject" EntitySet="PopulationObject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BaseForPracticeModelContainer" CdmEntityContainer="BaseForPracticeEntities">
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="BaseForPracticeModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Object">
+            <EntityTypeMapping TypeName="BaseForPracticeModel.Object">
+              <MappingFragment StoreEntitySet="Object">
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="CountSeats" ColumnName="CountSeats" />
+                <ScalarProperty Name="Opened_Closed" ColumnName="Opened_Closed" />
+                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owner">
+            <EntityTypeMapping TypeName="BaseForPracticeModel.Owner">
+              <MappingFragment StoreEntitySet="Owner">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopulationObject">
+            <EntityTypeMapping TypeName="BaseForPracticeModel.PopulationObject">
+              <MappingFragment StoreEntitySet="PopulationObject">
+                <ScalarProperty Name="PopulationObjectId" ColumnName="PopulationObjectId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="CountVisited" ColumnName="CountVisited" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

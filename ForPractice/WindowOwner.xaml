@@ -1,0 +1,27 @@
+﻿<Window x:Class="ForPractice.WindowOwner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ForPractice"
+        mc:Ignorable="d"
+        Title="WindowOwner" Height="200" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" x:Name="OwnersDb">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Type}" Header="Тип" Width="110"/>
+                <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО" Width="180"/>
+                <DataGridTextColumn Binding="{Binding Phone}" Header="Номер" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="updateButton" Content="Обновить"  Margin="0,0,0,-0.333"  />
+            <Button x:Name="deleteButton" Content="Удалить"  />
+        </StackPanel>
+    </Grid>
+</Window>
