@@ -26,5 +26,17 @@ namespace ForPractice
             var owners = new OwnerRepository().GetAll();
             OwnersDb.ItemsSource = owners;
         }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Hide();
+        }
     }
 }

@@ -43,8 +43,12 @@
 
         <TextBox x:Name="NameBox" Grid.Row="1" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120"></TextBox>
         <TextBox x:Name="TypeBox" Grid.Row="3" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120"></TextBox>
-        <TextBox x:Name="AdressBox" Grid.Row="5" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120"></TextBox>
-        <TextBox x:Name="CountSeatsBox" Grid.Row="7" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120"></TextBox>
+        <TextBox x:Name="AdressBox" Grid.Row="5" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120">
+            
+        </TextBox>
+        <TextBox x:Name="CountSeatsBox" Grid.Row="7" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120">
+            
+        </TextBox>
         <ComboBox x:Name="OpenedBox" Grid.Row="9" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Width="120">
             <TextBlock>Да</TextBlock>
             <TextBlock>Нет</TextBlock>

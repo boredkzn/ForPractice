@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <DataGrid x:Name="ObjectsDb">
+        <DataGrid x:Name="ObjectsDb" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="100"/>
                 <DataGridTextColumn Binding="{Binding Type}" Header="Тип" Width="90"/>

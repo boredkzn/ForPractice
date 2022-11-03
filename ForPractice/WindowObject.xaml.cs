@@ -42,9 +42,19 @@ namespace ForPractice
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             var index = (Object)ObjectsDb.SelectedItem;
-            repositoryOb.Delete(index.ObjectId);
-            repositoryOb.Save();
-            MessageBox.Show("Успешно");
+            if (index != null)
+            {
+                if (MessageBox.Show("Точно хотите удалить?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    repositoryOb.Delete(index.ObjectId);
+                    repositoryOb.Save();
+                    MessageBox.Show("Успешно");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите объект для удаления");
+            }            
             ObjectsDb.ItemsSource = repositoryOb.GetAll();
         }
 
@@ -58,9 +68,16 @@ namespace ForPractice
         private void editOb_Click(object sender, RoutedEventArgs e)
         {
             var index = (Object)ObjectsDb.SelectedItem;
-            AddObject addObject = new AddObject(index);
-            addObject.Show();
-            this.Hide();
+            if (index != null)
+            {
+                AddObject addObject = new AddObject(index);
+                addObject.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Выберите объект для редактирования");
+            }
 
 
         }

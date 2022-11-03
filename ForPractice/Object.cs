@@ -13,6 +13,7 @@ namespace ForPractice
     using NUnit.Framework;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Object
@@ -25,12 +26,19 @@ namespace ForPractice
         }
     
         public int ObjectId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Type { get; set; }
+        [Required]
         public string Adress { get; set; }
+        [Required]
         public int CountSeats { get; set; }
+        [Required]
         public bool Opened_Closed { get; set; }
+        [Required]
         public System.DateTime DateOpen { get; set; }
+        [Required]
         public int OwnerId { get; set; }
 
         [NotMapped]

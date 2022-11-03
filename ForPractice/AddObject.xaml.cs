@@ -58,40 +58,58 @@ namespace ForPractice
             var isOpen = OpenedBox.SelectedValue == "Да" ? true : false;
             if (ob != null)
             {
-                
-                ob.Name = NameBox.Text;
-                ob.Type = TypeBox.Text;
-                ob.Adress = AdressBox.Text;
-                ob.CountSeats = Convert.ToInt32(CountSeatsBox.Text);
-                if(isOpen)
-                    ob.Opened_Closed = isOpen;
-                ob.DateOpen = DateBoxTime.SelectedDate.Value;
-                if(selectedIdOwner != null) 
-                    ob.OwnerId = Convert.ToInt32(selectedIdOwner);
-                
+                try
+                {
+                    ob.Name = NameBox.Text;
+                    ob.Type = TypeBox.Text;
+                    ob.Adress = AdressBox.Text;
+                    ob.CountSeats = Convert.ToInt32(CountSeatsBox.Text);
+                    if (isOpen)
+                        ob.Opened_Closed = isOpen;
+                    ob.DateOpen = DateBoxTime.SelectedDate.Value;
+                    if (selectedIdOwner != null)
+                        ob.OwnerId = Convert.ToInt32(selectedIdOwner);
 
-                objectRepository.Save();
+                    objectRepository.Update(ob);
+                    objectRepository.Save();
+                    MessageBox.Show("Успешно");
+                    WindowObject windowObject = new WindowObject();
+                    windowObject.Show();
+                    this.Hide();
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка, убедитесь в корректности данных");
+                }
             }
             else
             {
-                var newObject = new Object()
+                try
                 {
-                    ObjectId = objectRepository.GetMaxNumber() + 1,
-                    Name = NameBox.Text,
-                    Type = TypeBox.Text,
-                    Adress = AdressBox.Text,
-                    CountSeats = Convert.ToInt32(CountSeatsBox.Text),
-                    Opened_Closed = isOpen,
-                    DateOpen = DateBoxTime.SelectedDate.Value,
-                    OwnerId = Convert.ToInt32(selectedIdOwner)
-                };
-                objectRepository.Create(newObject);
+                    var newObject = new Object()
+                    {
+                        ObjectId = objectRepository.GetMaxNumber() + 1,
+                        Name = NameBox.Text,
+                        Type = TypeBox.Text,
+                        Adress = AdressBox.Text,
+                        CountSeats = Convert.ToInt32(CountSeatsBox.Text),
+                        Opened_Closed = isOpen,
+                        DateOpen = DateBoxTime.SelectedDate.Value,
+                        OwnerId = Convert.ToInt32(selectedIdOwner)
+                    };
+                    objectRepository.Create(newObject);
+                    objectRepository.Save();
+                    MessageBox.Show("Успешно");
+                    WindowObject windowObject = new WindowObject();
+                    windowObject.Show();
+                    this.Hide();
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка, убедитесь в корректности данных");
+                }
             }
-            objectRepository.Save();
-            MessageBox.Show("Успешно");
-            WindowObject windowObject = new WindowObject();
-            windowObject.Show();
-            this.Hide();
+            
 
         }
     }
